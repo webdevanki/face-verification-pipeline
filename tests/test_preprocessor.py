@@ -17,8 +17,8 @@ def make_fake_image(brightness: int = 128, blur: bool = False) -> np.ndarray:
     img = np.ones((200, 200, 3), dtype=np.uint8) * brightness
     if not blur:
         # dodaj krawędzie żeby obraz był "ostry"
-        img[50:150, 50:150] = brightness + 40
-        img[80:120, 80:120] = brightness - 40
+        img[50:150, 50:150] = min(brightness + 40, 255)
+        img[80:120, 80:120] = max(brightness - 40, 0)
     return img
 
 
